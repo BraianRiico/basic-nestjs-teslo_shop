@@ -1,5 +1,6 @@
 import { BadRequestException, Get, Injectable, InternalServerErrorException, Logger, NotFoundException, Param, ParseUUIDPipe } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PaginationDto } from 'src/common/dtos/pagination.dto';
 import { Repository } from 'typeorm'; 
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -26,9 +27,15 @@ export class ProductsService {
     }  
   }
 
-  //TODO pendiente paginar
-  findAll() {
-    return this.productRepository.find({});
+  findAll( paginationDto: PaginationDto) {
+
+    const { limit = 10, offset= 0 } = paginationDto;
+
+    return this.productRepository.find({
+      take: limit,
+      skip: offset,
+      //TODO Relaciones
+    });
   }
 
   async findOne( id: string ) {

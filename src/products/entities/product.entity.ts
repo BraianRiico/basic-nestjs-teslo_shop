@@ -1,7 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Product {
+    export class Product {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -41,5 +41,14 @@ export class Product {
     
     //tags
     //images
-
-}
+    @BeforeInsert()
+    checkSlugInsert() {
+        if ( !this.slug ){
+        this.slug = this.title
+        }
+        this.slug = this.slug
+                    .toLowerCase()
+                    .replaceAll(' ', '_')
+                    .replaceAll("'", '')
+      }
+    }

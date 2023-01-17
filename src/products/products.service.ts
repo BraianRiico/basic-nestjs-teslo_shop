@@ -45,8 +45,7 @@ export class ProductsService {
 
     if ( isUUID(term) ){
       product = await this.productRepository.findOneBy({ id: term });
-    } else {
-      const queryBuilder = this.productRepository.createQueryBuilder();
+    } else {    const queryBuilder = this.productRepository.createQueryBuilder();
       product = await queryBuilder.where( 'UPPER(title) =:title or slug=:slug',{
         title:  term.toUpperCase(), //utilizar el metodo touppercase es opción para ser más flexibles en las consultas
         slug:   term.toLowerCase(), //utilizar el metodo tolowercase es opción para ser más flexibles en las consultas

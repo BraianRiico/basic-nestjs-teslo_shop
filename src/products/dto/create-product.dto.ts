@@ -30,7 +30,7 @@ export class CreateProductDto {
     @IsInt()
     @IsPositive()
     @IsOptional()
-    storck: number;
+    stock: number;
     
     @IsString({ each: true })
     @IsArray()

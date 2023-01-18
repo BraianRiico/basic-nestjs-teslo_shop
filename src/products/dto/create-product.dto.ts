@@ -43,5 +43,6 @@ export class CreateProductDto {
     @IsArray()
     @IsOptional()
     tags: string[];
+    
 
 }

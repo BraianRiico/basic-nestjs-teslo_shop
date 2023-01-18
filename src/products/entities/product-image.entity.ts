@@ -15,5 +15,5 @@ export class ProductImage {
         ( product ) => product.images,
         { onDelete: "CASCADE" }
     )
-    product: Product
+    product: Product 
 }

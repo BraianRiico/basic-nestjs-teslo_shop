@@ -49,7 +49,7 @@ import { ProductImage } from "./";
     @OneToMany(
         () => ProductImage,
         (productImage) => productImage.product,
-        { cascade: true }
+        { cascade: true, eager: true }
     )
     images?: ProductImage[];
     

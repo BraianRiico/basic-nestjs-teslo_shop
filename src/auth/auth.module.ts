@@ -13,8 +13,9 @@ import { JwtStrategy } from './strategies/jwt.strategy';
   controllers:  [AuthController],
   providers:    [AuthService, JwtStrategy ],
   imports:      [
-    TypeOrmModule.forFeature([ User ]),
     ConfigModule,
+    
+    TypeOrmModule.forFeature([ User ]),
 
     PassportModule.register({ defaultStrategy: 'jwt' }),
 
@@ -27,7 +28,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
         return {
           secret: configService.get('JWT_SECRET'),
           signOptions: {
-            expiresIn: '2'
+            expiresIn: '2h'
           } 
         }
       }
